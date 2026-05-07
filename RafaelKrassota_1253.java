@@ -5,8 +5,8 @@ public class RafaelKrassota_1253 {
     final static Scanner LER = new Scanner(System.in);
 
     final static char[] ALFABETO =
-    {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
-    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     public static int acharPosAlfa(char letra) {
         for (int i = 0; i < ALFABETO.length; i++) {
@@ -25,12 +25,14 @@ public class RafaelKrassota_1253 {
             posAlfa = acharPosAlfa(cifra[i]);
 
             if (posAlfa - valorCifra < 0) {
-                posAlfa = 25 - Math.abs(posAlfa - valorCifra);
+                posAlfa = 26 - Math.abs(posAlfa - valorCifra);
+            }else {
+                posAlfa-= valorCifra;
             }
 
             decodificado[i] = ALFABETO[posAlfa];
         }
-        return decodificado.toString();
+        return new String(decodificado);
     }
 
     public static void main(String[] args) {
