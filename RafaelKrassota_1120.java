@@ -4,33 +4,25 @@ public class RafaelKrassota_1120 {
 
     final static Scanner LER = new Scanner(System.in);
 
-    public static void substituir(String tal, String grandao) {
-        if (grandao.contains(tal)) {
-            grandao.replaceAll(tal, "");
-        }
-    }
-
     public static void main(String[] args) {
         String oTal;
         String numero;
 
         while (true) {
-
-            oTal = LER.nextBigInteger().toString();
-            numero = LER.nextBigInteger().toString();
+            oTal = LER.next();
+            numero = LER.next();
 
             if (oTal.equals("0") && numero.equals("0")) {
                 break;
             }
 
-            substituir(oTal, numero);
+            String resultado = numero.replace(oTal, "");
+            resultado = resultado.replaceFirst("^0+", "");
 
-            numero.replaceFirst("^0+", "");
-
-            if (numero.isEmpty()) {
+            if (resultado.isEmpty()) {
                 System.out.println("0");
-            }else {
-                System.out.println(numero);
+            } else {
+                System.out.println(resultado);
             }
         }
     }
