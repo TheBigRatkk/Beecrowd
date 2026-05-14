@@ -24,6 +24,7 @@ public class RafaelKrassota_1272 {
 
     public static void main(String[] args) {
         int teste = LER.nextInt();
+        LER.nextLine();
         String testo;
 
         for (int i = 0; i < teste; i++) {
