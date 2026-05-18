@@ -1,32 +1,55 @@
 import java.util.Scanner;
 
-class RafaelKrassota_1263 {
+public class RafaelKrassota_1263 {
 
     final static Scanner LER = new Scanner(System.in);
 
-    public static int contarAliteracoes(String texto) {
-        int qtdAliteracoes = 0;
-        int vezesAliteradas = 0;
-        char letrAlitera = texto.charAt(0);
-        
-        for (int i = 1; i < texto.length(); i++) {
-            char letraAtual = texto.charAt(i);
+    public static String deixarIniciais(String texto) {
+        StringBuilder testo = new StringBuilder(texto);
 
-            if (Character.isSpaceChar(texto.charAt(i - 1))) {
-                if (letraAtual == letrAlitera) {
-                    vezesAliteradas++;
-                }else {
-                    letrAlitera = letraAtual;
-                    if (vezesAliteradas >= 2) {
-                        vezesAliteradas = 0;
-                        qtdAliteracoes++;
-                    }
-                }
+        for (int i = 0; i < testo.length(); i++) {
+            if (Character.isLowerCase(testo.charAt(i))) {
+                testo.deleteCharAt(i);
             }
-
         }
 
-        return qtdAliteracoes;
+        return new String(testo);
+    }
+
+    public static void marcarIniciais(String texto) {
+
+        for (int i = 0; i < texto.length(); i++) {
+            if (i == 0) {
+                if (!Character.isWhitespace(texto.charAt(i))) {
+                    Character.toUpperCase(texto.charAt(i));
+                }
+            }else if (Character.isWhitespace(texto.charAt(i - 1))) {
+                Character.toUpperCase(texto.charAt(i));
+            }else {
+                Character.toLowerCase(texto.charAt(i));
+            }
+        }
+
+    }
+
+    public static int contarAliteracoes(String texto) {
+        int aliteracoes = 0;
+        int vezesAliteradas = 0;
+        char letra = texto.charAt(0);
+
+        for (int i = 0; i < texto.length(); i++) {
+            char letraAtual = texto.charAt(i);
+            if (letraAtual == letra) {
+                vezesAliteradas++;
+            }else {
+                if (vezesAliteradas > 2) {
+                    aliteracoes++;
+                }
+                letra = texto.charAt(i);
+            }
+        }
+
+        return aliteracoes;
     }
 
     public static void main(String[] args) {
@@ -34,8 +57,12 @@ class RafaelKrassota_1263 {
         int aliteracoes;
 
         while (LER.hasNext()) {
-            texto = LER.nextLine();
+            texto = LER.next();
+
+            marcarIniciais(texto);
+            texto = deixarIniciais(texto);
             aliteracoes = contarAliteracoes(texto);
+
             System.out.println(aliteracoes);
         }
     }
