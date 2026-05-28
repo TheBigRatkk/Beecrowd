@@ -4,49 +4,28 @@ public class RafaelKrassota_1263 {
 
     final static Scanner LER = new Scanner(System.in);
 
-    public static String deixarIniciais(String texto) {
-        StringBuilder testo = new StringBuilder(texto);
-
-        for (int i = 0; i < testo.length(); i++) {
-            if (Character.isLowerCase(testo.charAt(i))) {
-                testo.deleteCharAt(i);
-            }
-        }
-
-        return new String(testo);
-    }
-
-    public static void marcarIniciais(String texto) {
-
-        for (int i = 0; i < texto.length(); i++) {
-            if (i == 0) {
-                if (!Character.isWhitespace(texto.charAt(i))) {
-                    Character.toUpperCase(texto.charAt(i));
-                }
-            }else if (Character.isWhitespace(texto.charAt(i - 1))) {
-                Character.toUpperCase(texto.charAt(i));
-            }else {
-                Character.toLowerCase(texto.charAt(i));
-            }
-        }
-
-    }
-
-    public static int contarAliteracoes(String texto) {
+    public static int contarAliteracoes(String testo) {
         int aliteracoes = 0;
-        int vezesAliteradas = 0;
-        char letra = texto.charAt(0);
+        int contAlit = 1;
+        char[] texto = testo.toCharArray();
+        char letrAlitera = texto[0];
 
-        for (int i = 0; i < texto.length(); i++) {
-            char letraAtual = texto.charAt(i);
-            if (letraAtual == letra) {
-                vezesAliteradas++;
-            }else {
-                if (vezesAliteradas > 2) {
-                    aliteracoes++;
+        for (int i = 1; i < texto.length; i++) {
+            if (Character.isWhitespace(texto[i - 1])) {
+                if (texto[i] == letrAlitera) {
+                    contAlit++;
+                } else {
+                    letrAlitera = texto[i];
+                    if (contAlit >= 2) {
+                        aliteracoes++;
+                        contAlit = 1;
+                    }
                 }
-                letra = texto.charAt(i);
             }
+        }
+
+        if (contAlit >= 2) {
+            aliteracoes++;
         }
 
         return aliteracoes;
@@ -57,11 +36,9 @@ public class RafaelKrassota_1263 {
         int aliteracoes;
 
         while (LER.hasNext()) {
-            texto = LER.next();
+            texto = LER.nextLine();
 
-            marcarIniciais(texto);
-            texto = deixarIniciais(texto);
-            aliteracoes = contarAliteracoes(texto);
+            aliteracoes = contarAliteracoes(texto.toLowerCase());
 
             System.out.println(aliteracoes);
         }
