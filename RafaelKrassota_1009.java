@@ -4,9 +4,9 @@ public class RafaelKrassota_1009 {
     
     final static Scanner TECLADO = new Scanner(System.in);
 
-    public static float lerFloat() {
-        float valor = 0;
-        valor = TECLADO.nextFloat();
+    public static double lerdouble() {
+        double valor = 0;
+        valor = TECLADO.nextDouble();
         return valor;
     }
 
@@ -16,29 +16,29 @@ public class RafaelKrassota_1009 {
         return texto;
     }
 
-    public static void imprimirTotal(float salarioTotal) {
+    public static void imprimirTotal(double salarioTotal) {
         System.out.printf("TOTAL = R$ %.2f\n", salarioTotal);
     }
 
-    public static float obterTotal(float salarioFixo, float totalVendas) {
-        float salarioTotal = 0;
-        float comissaoGanha = 0;
+    public static double obterTotal(double salarioFixo, double totalVendas) {
+        double salarioTotal = 0;
+        double comissaoGanha = 0;
         
         comissaoGanha = (totalVendas / 100) * 15;
-        salarioTotal = salarioFixo + comissaoGanha;
+        salarioTotal = (salarioFixo + comissaoGanha);
 
         return salarioTotal;
     }
 
     public static void main(String[] args) {
-        float salarioFixo = 0;
-        float salarioTotal = 0;
-        float totalVendas = 0;
+        double salarioFixo = 0;
+        double salarioTotal = 0;
+        double totalVendas = 0;
         String nome = null;
 
         nome = lerTexto();
-        salarioFixo = lerFloat();
-        totalVendas = lerFloat();
+        salarioFixo = lerdouble();
+        totalVendas = lerdouble();
 
         salarioTotal = obterTotal(salarioFixo, totalVendas);
 
